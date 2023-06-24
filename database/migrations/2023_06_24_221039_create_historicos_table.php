@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('descargas');
             $table->date('rango_fecha');
-            $table->unsignedBigInteger('ingreso_id');
-            $table->unsignedBigInteger('egreso_id');
-            $table->foreign('ingreso_id')->references('id')->on('ingresos')->onDelete('cascade');
-            $table->foreign('egreso_id')->references('id')->on('egresos')->onDelete('cascade');
+            // $table->unsignedBigInteger('ingreso_id');
+            // $table->unsignedBigInteger('egreso_id');
+            // $table->foreign('ingreso_id')->references('id')->on('ingresos')->onDelete('cascade');
+            // $table->foreign('egreso_id')->references('id')->on('egresos')->onDelete('cascade');
             $table->timestamps();
         });
     }
