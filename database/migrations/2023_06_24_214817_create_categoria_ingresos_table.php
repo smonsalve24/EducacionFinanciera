@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('alertas', function (Blueprint $table) {
+        Schema::create('categoria_ingresos', function (Blueprint $table) {
             $table->id();
-            $table->string('email_users');
-            $table->string('tipo_alerta');
-            $table->longText('mensaje')->nullable();
+            $table->string('tipo_ingreso');
+            $table->string('nombre');
+            $table->unsignedBigInteger('ingreso_id');
+            $table->foreign('ingreso_id')->references('id')->on('ingresos')->onDelete('cascade');
+            
             $table->timestamps();
         });
-
     }
 
     /**
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('alertas');
+        Schema::dropIfExists('categoria_ingresos');
     }
 };
