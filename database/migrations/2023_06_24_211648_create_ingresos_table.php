@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('ingresos', function (Blueprint $table) {
+            $table->id();
+            $table->double('valor');
+            $table->date('fecha');
+            $table->string('nombre');
+            $table->unsignedBigInteger('categoria_ingreso_id');
+            $table->unsignedBigInteger('historico_id');
+            $table->foreign('categoria_ingreso_id')->references('id')->on('categoria_ingresos')->onDelete('cascade');
+            $table->foreign('historico_id')->references('id')->on('categoria_ingresos')->onDelete('cascade');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('ingresos');
+    }
+};
