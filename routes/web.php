@@ -21,6 +21,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/hola', [App\Http\Controllers\AlertasController::class, 'create'])->name('hola');
+Route::resource('alerts', App\Http\Controllers\AlertasController::class);
 
 

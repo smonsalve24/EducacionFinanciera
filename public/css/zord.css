@@ -1,0 +1,67 @@
+.sidebar a:hover{
+	color: #1f668e;
+}
+.sidebar a{
+	color: #f5f8fa;
+}
+.sidebar{
+	margin-top: 42px;
+	position: fixed;
+	padding: 0px;
+	height: 100%;
+	background: #3c3c3b;
+}
+.navbar{
+	background:  #be1622 !important;
+	height: 42px;
+	min-height: auto;
+}
+.contenido{
+	margin-top: 42px;
+}
+.text-blanco{
+	color: #ffffff !important;
+}
+.text-gris{
+	color: rgb(115, 115, 115);
+}
+li.principal{
+	background: #961820;
+}
+.nav>li.active>a{
+	background: #eee;
+	color: #216a94;
+}
+
+.navbar-brand img{
+	width: 30px;
+	margin-right: 10%;
+}
+.navbar-brand{
+	padding: 5px 15px;
+    width: 130px;
+}
+.navbar-nav>li>a{
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+.no-padding{
+	padding: 0px;
+}
+.panel-header h3{
+	margin-top: 10px;
+	margin-bottom: 0px;
+	margin-right: 5%;
+}
+.text-regular{
+	font-family: 'Lato-Regular' !important;
+}
+.text-light{
+	font-family: 'Lato-Light' !important;
+}
+.text-bold{
+	font-family: 'Lato-Bold' !important;
+}
+.text-black{
+	font-family: 'Lato-Black' !important;
+}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alerta as Alerta;
 use Illuminate\Http\Request;
 
 class AlertasController extends Controller
@@ -17,7 +18,8 @@ class AlertasController extends Controller
      */
     public function index()
     {
-        //
+        $alertas = Alerta::all();
+        return view('administrativo.alertas.alerta', compact('alertas'));
     }
 
     /**
@@ -25,7 +27,7 @@ class AlertasController extends Controller
      */
     public function create()
     {
-        return "Hola";
+        return view('administrativo.alertas.create');
     }
 
     /**
@@ -33,7 +35,29 @@ class AlertasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = \Validator::make($request->all(), [
+            'email_users' => 'required',
+            'tipo_alerta' => 'required',
+            'mensaje' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            $store = new Alerta;
+            $store->email_users = $request->input('email_users');
+            $store->tipo_alerta = $request->input('tipo_alerta');
+            $store->mensaje = $request->input('mensaje');
+            if ($store->save()) {
+
+                return back()->with('success', 'Su item se guardó correctamente');
+            } else {
+                return back()->with('error', 'Su item no se guardó correctamente');
+
+            }
+        }
     }
 
     /**
@@ -41,7 +65,8 @@ class AlertasController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $alerta = Alerta::find($id);
+        return view('administrativo.alertas.edit', compact('alerta'));
     }
 
     /**
@@ -57,7 +82,29 @@ class AlertasController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validator = \Validator::make($request->all(), [
+            'email_users' => 'required',
+            'tipo_alerta' => 'required',
+            'mensaje' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            $store = Alerta::find($id);
+            $store->email_users = $request->input('email_users');
+            $store->tipo_alerta = $request->input('tipo_alerta');
+            $store->mensaje = $request->input('mensaje');
+            if ($store->update()) {
+
+                return back()->with('success', 'Su item se guardó correctamente');
+            } else {
+                return back()->with('error', 'Su item no se guardó correctamente');
+
+            }
+        }
     }
 
     /**
@@ -65,6 +112,8 @@ class AlertasController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $store = Alerta::find($id);
+        $store->delete();
+        return back()->with('success', 'Su item se eliminó correctamente');
     }
 }
