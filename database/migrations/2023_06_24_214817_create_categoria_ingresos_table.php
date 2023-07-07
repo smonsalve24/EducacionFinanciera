@@ -15,9 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('tipo_ingreso');
             $table->string('nombre');
-            // $table->unsignedBigInteger('ingreso_id');
-            // $table->foreign('ingreso_id')->references('id')->on('ingresos')->onDelete('cascade');
-            
             $table->timestamps();
         });
     }

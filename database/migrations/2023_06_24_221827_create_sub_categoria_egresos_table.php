@@ -14,10 +14,7 @@ return new class extends Migration
         Schema::create('sub_categoria_egresos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            // $table->unsignedBigInteger('egreso_id');
             $table->unsignedBigInteger('categoria_egreso_id');
-
-            // $table->foreign('egreso_id')->references('id')->on('egresos')->onDelete('cascade');
             $table->foreign('categoria_egreso_id')->references('id')->on('categoria_egresos')->onDelete('cascade');
 
             $table->timestamps();
