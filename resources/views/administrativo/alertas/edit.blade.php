@@ -12,12 +12,12 @@
 			    <strong>{{ $message }}</strong>
 			</div>
 		@endif
-	<h3 class="text-regular"><strong>Editar Item:</strong> {{$alerta['email_users']}} </h3>
+	<h3 class="text-white"><strong>Editar Item:</strong> {{$alerta['email_users']}} </h3>
 	<form method="POST" action="/alerts/{{$alerta['id']}}">
 		@csrf
 		{{method_field('PUT')}}
-		<div class="form-horizontal">
-			<div class="form-group">
+		<div class="form-horizontal text-white">
+			<div class="form-group mb-3">
 				<label for="" class="control-label col-md-2">Usuarios afectados:</label>
 				<div class="col-md-6">
 					<input type="text" class="form-control" name="email_users" value="{{old('email_users', $alerta['email_users'])}}" placeholder="Nombre">
@@ -26,7 +26,7 @@
 @enderror
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group mb-3">
 				<label for="" class="control-label col-md-2">Tipo de alerta:</label>
 				<div class="col-md-6">
 					<select name="tipo_alerta" id="">
@@ -39,7 +39,7 @@
 @enderror
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group mb-3">
 				<label for="" class="control-label col-md-2">Descripción:</label>
 				<div class="col-md-6">
 					<textarea name="mensaje" class="form-control" placeholder="Descripción de Sider..." rows="7">{{$alerta['mensaje']}}</textarea>
@@ -48,12 +48,14 @@
 @enderror
 				</div>
 			</div>
-			<div class="form-group">
-				<div class="col-md-offset-2 col-md-10">
-					<input type="submit" class="btn btn-primary" value="Actualizar Item">
-				</div>
-				<div class="col-md-3">
-					<a href="{{url('alerts')}}" class="btn btn-danger">Cancelar y Regresar</a>
+			<div class="form-group mt-3">
+				<div class="row">
+					<div class="col-md-2">
+						<input type="submit" class="btn btn-primary" value="Actualizar Item">
+					</div>
+					<div class="col-md-2">
+						<a href="{{url('alerts')}}" class="btn btn-danger">Cancelar y Regresar</a>
+					</div>
 				</div>
 			</div>
 		</div>

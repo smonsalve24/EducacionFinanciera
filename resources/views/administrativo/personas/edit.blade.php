@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-@if(isset($persona))
+@if(isset($persona) && isset($personas))
 @if($message = Session::get('success'))
 			<div class="alert alert-success alert-block">
 				<button type="button" class="close" data-dismiss="alert">×</button>
@@ -12,23 +12,28 @@
 			    <strong>{{ $message }}</strong>
 			</div>
 		@endif
-	<h3 class="text-regular"><strong>Editar Item:</strong> {{$persona['nombre']}} </h3>
+	<h3 class="text-white"><strong>Editar Item:</strong> {{$personas[0]['name']}} </h3>
 	<form method="POST" action="/personas/{{$persona['id']}}">
 		@csrf
 		{{method_field('PUT')}}
-		<div class="form-horizontal">
+		<div class="form-horizontal text-white">
 			<div class="form-group">
 				<label for="" class="control-label col-md-2">Persona Id:</label>
 				<div class="col-md-6">
 					<select name="persona_id" id="">
-						<option value="3">Valor</option>
+						@if(isset($personas))
+                            @foreach($personas as $p)
+                                <option value="{{$p['id']}}" @if($p['id'] == $persona['persona_id'] ) selected @endif>{{$p['name']}}</option>
+
+                            @endforeach
+                            @endif
 					</select>
 				</div>
 				@error('persona_id')
 <div class="alert alert-danger">{{ $message }}</div>
 @enderror
 			</div>
-			<div class="form-group">
+			{{-- <div class="form-group">
 				<label for="" class="control-label col-md-2">Nombre</label>
 				<div class="col-md-6">
 					<input type="text" class="form-control" name="nombre" value="{{old('nombre', $persona['nombre'])}}" placeholder="Nombre completo">
@@ -36,13 +41,13 @@
 <div class="alert alert-danger">{{ $message }}</div>
 @enderror
 				</div>
-			</div>
+			</div> --}}
 			<div class="form-group">
 				<label for="" class="control-label col-md-2">Rol:</label>
 				<div class="col-md-6">
 					<select name="rol" id="">
 						<option value="0" @if($persona['rol'] == 0) selected @endif>Administrador</option>
-						<option value="1" @if($persona['rol'] == 1) selected @endif>Usuario</option>
+						<option value="1" @if($persona['rol'] == 1) selected @endif>Cliente</option>
 					</select>
 				</div>
 				@error('rol')

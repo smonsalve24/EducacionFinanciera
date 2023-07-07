@@ -134,10 +134,10 @@
                 </div>
             </div>
         </nav>
-        <div class="row">
+        <div class="row py-3">
             @guest
         @else
-        <div class="sidebar col-xs-2 col-sm-2 col-md-2 col-lg-2" style="position: relative !important">
+        <div class="sidebar col-xs-2 col-sm-2 col-md-2 col-lg-2" style="position: absolute !important">
             <!-- Left Side Of Navbar -->
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                   <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
@@ -201,7 +201,7 @@
         </div>
         
         @endguest
-        <div class="contenido col-xs-10 col-xs-offset-2 col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 col-lg-12 col-lg-offset-2">
+        <div class="contenido col-xs-10 col-xs-offset-2 col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 col-lg-8 col-lg-offset-2" style="margin-left: 270px">
             <div class="panel-header">
                 <!-- Nav tabs -->
             </div>

@@ -2,11 +2,7 @@
 @section('content')
 <div class="panel-header">
     <!-- Nav tabs -->
-    <ul class="nav nav-tabs text-regular" role="tablist">
-        <li role="presentation" class="active">
-            <a href="{{ route('alerts.create') }}">Crear nueva alerta</a>
-        </li>
-    </ul>
+	<a href="{{ route('alerts.create') }}" class="btn btn-primary">Crear nueva alerta</a>
 </div>
 <div>
 	<!-- Tab panes -->
@@ -16,24 +12,24 @@
 			<table class="table">
 			<tr class="bg-primary">
 				<td>
-					<h5 class="text-center">
+					<h6 class="text-center">
 						#
-					</h5>
+					</h6>
 				</td>
 				<td>
-					<h5 class="text-center">
+					<h6 class="text-center">
 						Titulo
-					</h5>
+					</h6>
 				</td>
 				<td>
-					<h5 class="text-center">
+					<h6 class="text-center">
 						Tipo alerta
-					</h5>
+					</h6>
 				</td>
 				<td>
-					<h5 class="text-center">
+					<h6 class="text-center">
 						Descripción
-					</h5>
+					</h6>
 				</td>
 				{{-- <td>
 					<h5 class="text-center">
@@ -41,61 +37,43 @@
 					</h5>
 				</td> --}}
 				<td>
-					<h5 class="text-center">
+					<h6 class="text-center">
 						Acciones
-					</h5>
+					</h6>
 				</td>
 			</tr>
 			@if(isset($alertas))
 				@foreach($alertas as $directorio)
 					<tr>
 						<td>
-							<h5 class="text-center">
+							<h6 class="text-center">
 								{{$directorio['id']}}
-							</h5>
+							</h6>
 						</td>
 						<td>
-							<h5 class="text-center">
+							<h6 class="text-center">
 								{{$directorio['email_users']}}
-							</h5>
+							</h6>
 						</td>
 						<td>
-							<h5 class="text-center">
+							<h6 class="text-center">
 								{{$directorio['tipo_alerta']}}
-							</h5>
+							</h6>
 						</td>
 						<td>
 							<div class="small text-capitalize text-center" style="max-width: 260px;">
 								{!! substr($directorio['mensaje'], 0, 100)!!}...
 							</div>
 						</td>
-						{{-- <td>
-							<h5 class="text-left">
-								{{$directorio['titulo_proyectos']}}
-							</h5>
-						</td>
-						<td>
-							<div class="small text-capitalize" style="max-width: 260px;">
-								{!!substr($directorio['descripcion_proyectos'], 0, 100)!!}...
-							</div>
-						</td>
-						<td>
-							<h5 class="text-center">
-								@if($directorio['archivo'] != NULL)
-									<img src="{{asset($directorio['archivo'])}}" alt="" class="img-responsive center-block" style="height: 50px;">
-								@else
-									No hay archivo
-								@endif
-							</h5>
-						</td> --}}
-						<td class="text-center">
-							<a href="{{route('alerts.show',$directorio['id'])}}" class="text-center text-info btn">
+						<td class="text-center" style="display: flex;
+						justify-content: center;align-items: center;">
+							<a href="{{route('alerts.show',$directorio['id'])}}" class="text-center text-info btn border-0">
 								<i class="text-center fa fa-pencil"></i> Editar
 							</a>
 							<form method="POST" action="/alerts/{{$directorio['id']}}">
 								@csrf
 								{{method_field('DELETE')}}
-								<button type="submit" class="btn btn-danger">Eliminar</button>
+								<button type="submit" class="text-danger border-0 bg-white"><i class="text-center fa fa-close"></i> Eliminar</button>
 						</form>
 						</td>
 					</tr>

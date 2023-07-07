@@ -6,6 +6,9 @@
 	/*height: 90px;*/
 	background-color: #3c3c3b;
 }
+#app{
+	height: 100%;
+}
 #proyectos{
 	overflow: hidden;
 	position: relative;

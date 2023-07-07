@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Persona as Persona;
+use App\Models\User as User;
 use Illuminate\Http\Request;
 
 class PersonasController extends Controller
@@ -18,7 +19,8 @@ class PersonasController extends Controller
     public function index()
     {
         $personas = Persona::all();
-        return view('administrativo.personas.persona', compact('personas'));
+        $usuarios = User::all();
+        return view('administrativo.personas.persona', compact('personas', 'usuarios'));
 
     }
 
@@ -27,7 +29,10 @@ class PersonasController extends Controller
      */
     public function create()
     {
-        return view('administrativo.personas.create');
+        $personas = User::all();
+
+         return view('administrativo.personas.create', compact('personas'));
+        
     }
 
     /**
@@ -36,8 +41,7 @@ class PersonasController extends Controller
     public function store(Request $request)
     {
         $validator = \Validator::make($request->all(), [
-            'persona_id' => 'required',
-            'nombre' => 'required',
+            'persona_id' => 'required|unique:personas',
             'rol' => 'required',
         ]);
 
@@ -48,7 +52,7 @@ class PersonasController extends Controller
         } else {
             $store = new Persona;
             $store->persona_id = $request->input('persona_id');
-            $store->nombre = $request->input('nombre');
+            $store->nombre = 'd';
             $store->rol = $request->input('rol');
             if ($store->save()) {
 
@@ -66,7 +70,8 @@ class PersonasController extends Controller
     public function show(string $id)
     {
         $persona = Persona::find($id);
-        return view('administrativo.personas.edit', compact('persona'));
+        $personas = User::where('id', '=', $persona['persona_id'])->get();
+        return view('administrativo.personas.edit', compact('persona','personas'));
     }
 
     /**
@@ -84,7 +89,6 @@ class PersonasController extends Controller
     {
         $validator = \Validator::make($request->all(), [
             'persona_id' => 'required',
-            'nombre' => 'required',
             'rol' => 'required',
         ]);
 
@@ -95,7 +99,7 @@ class PersonasController extends Controller
         } else {
             $store = Persona::find($id);
             $store->persona_id = $request->input('persona_id');
-            $store->nombre = $request->input('nombre');
+            $store->nombre = 'hola';
             $store->rol = $request->input('rol');
             if ($store->update()) {
 

@@ -2,11 +2,7 @@
 @section('content')
 <div class="panel-header">
     <!-- Nav tabs -->
-    <ul class="nav nav-tabs text-regular" role="tablist">
-        <li role="presentation" class="active">
-            <a href="{{ route('personas.create') }}">Crear nuevo usuario</a>
-        </li>
-    </ul>
+	<a href="{{ route('personas.create') }}" class="btn btn-primary">Crear nuevo usuario</a>
 </div>
 <div>
 	<!-- Tab panes -->
@@ -18,11 +14,6 @@
 				<td>
 					<h5 class="text-center">
 						#
-					</h5>
-				</td>
-				<td>
-					<h5 class="text-center">
-						Persona Id
 					</h5>
 				</td>
 				<td>
@@ -55,19 +46,25 @@
 							</h5>
 						</td>
 						<td>
-							<h5 class="text-center">
-								{{$directorio['persona_id']}}
-							</h5>
+							<h6 class="text-center">
+								@if(isset($usuarios))
+									@foreach($usuarios as $usuario)
+										@if($usuario['id'] == $directorio['persona_id'])
+										{{$usuario['name']}}
+										@endif
+									@endforeach
+								@endif
+							</h6>
 						</td>
 						<td>
-							<h5 class="text-center">
-								{{$directorio['nombre']}}
-							</h5>
-						</td>
-						<td>
-							<h5 class="text-center">
-								{{$directorio['rol']}}
-							</h5>
+							<h6 class="text-center">
+								@if($directorio['rol'] == 0)
+								Administrador
+								@else
+								Cliente
+
+								@endif
+							</h6>
 						</td>
 						{{-- <td>
 							<h5 class="text-left">
@@ -88,14 +85,14 @@
 								@endif
 							</h5>
 						</td> --}}
-						<td class="text-center">
+						<td class="text-center d-flex justify-content-center align-items-center">
 							<a href="{{route('personas.show',$directorio['id'])}}" class="text-center text-info btn">
 								<i class="text-center fa fa-pencil"></i> Editar
 							</a>
 							<form method="POST" action="/personas/{{$directorio['id']}}">
 								@csrf
 								{{method_field('DELETE')}}
-								<button type="submit" class="btn btn-danger">Eliminar</button>
+								<button type="submit" class="text-danger border-0 bg-white"><i class="text-center fa fa-close"></i> Eliminar</button>
 						</form>
 						</td>
 					</tr>

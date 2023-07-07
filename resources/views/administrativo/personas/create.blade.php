@@ -15,19 +15,24 @@
 		@endif
         <form method="POST" action="{{ route('personas.store') }}">
             @csrf
-            <div class="form-horizontal">
+            <div class="form-horizontal text-white">
                 <div class="form-group">
                     <label for="" class="control-label col-md-2">Personas Id:</label>
                     <div class="col-md-6">
                         <select name="persona_id" id="">
-                            <option value="3">Valor</option>
+                            @if(isset($personas))
+                            @foreach($personas as $p)
+                                <option value="{{$p['id']}}">{{$p['name']}}</option>
+
+                            @endforeach
+                            @endif
                         </select>
                     </div>
                     @error('persona_id')
     <div class="alert alert-danger">{{ $message }}</div>
 @enderror
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="" class="control-label col-md-2">Nombre:</label>
                     <div class="col-md-6">
                         <input type="text" class="form-control" name="nombre" placeholder="Nombre completo">
@@ -35,7 +40,7 @@
     <div class="alert alert-danger">{{ $message }}</div>
 @enderror
                     </div>
-                </div>
+                </div> --}}
                 <div class="form-group">
                     <label for="" class="control-label col-md-2">Rol:</label>
                     <div class="col-md-6">

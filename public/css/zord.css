@@ -8,8 +8,13 @@ body{
 	min-height: 100%;
 }
 
+#app{
+	min-height: 100%;
+}
+
 .navbar + div.row{
 	background-color: rgba(0, 0, 0, 0.63);
+	min-height: 100%;
 }
 
 .sidebar a:hover{

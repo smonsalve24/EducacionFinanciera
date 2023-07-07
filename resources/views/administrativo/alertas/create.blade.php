@@ -2,6 +2,9 @@
 @section('content')
 <div class="container">
     <div class="row">
+        <div class="col-lg-12 text-white">
+            <h3>Creación de Alerta</h3>
+        </div>
         @if($message = Session::get('success'))
 			<div class="alert alert-success alert-block">
 				<button type="button" class="close" data-dismiss="alert">×</button>
@@ -15,7 +18,7 @@
 		@endif
         <form method="POST" action="{{ route('alerts.store') }}">
             @csrf
-            <div class="form-horizontal">
+            <div class="form-horizontal text-white">
                 <div class="form-group">
                     <label for="" class="control-label col-md-2">Usuarios afectados:</label>
                     <div class="col-md-6">
@@ -47,7 +50,7 @@
 @enderror
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group mt-4">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" class="btn btn-primary" value="Guardar Item">
                     </div>
