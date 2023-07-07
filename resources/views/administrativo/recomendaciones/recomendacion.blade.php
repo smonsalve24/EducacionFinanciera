@@ -56,7 +56,7 @@
 						</td>
 						<td>
 							<h5 class="text-left">
-								{{$directorio['email']}}
+								{{$directorio['correo_usuario']}}
 							</h5>
 						</td>
 						<td>

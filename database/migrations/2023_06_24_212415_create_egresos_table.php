@@ -17,14 +17,10 @@ return new class extends Migration
             $table->date('fecha');
             $table->string('nombre');
             $table->unsignedBigInteger('categoria_egreso_id');
-            $table->unsignedBigInteger('sub_categoria_egreso_id');
-            $table->unsignedBigInteger('historico_id');
+            $table->foreign('categoria_egreso_id')->references('id')->on('categoria_egresos')->onDelete('cascade');
             $table->unsignedBigInteger('alerta_id');
-
-            $table->foreign('categoria_egresos_id')->references('id')->on('categoria_egresos')->onDelete('cascade');
-            $table->foreign('subcategoria_egresos_id')->references('id')->on('categoria_egresos')->onDelete('cascade');
-            $table->foreign('historico_id')->references('id')->on('categoria_ingresos')->onDelete('cascade');
             $table->foreign('alerta_id')->references('id')->on('alertas')->onDelete('cascade');
+
             
             $table->timestamps();
         });

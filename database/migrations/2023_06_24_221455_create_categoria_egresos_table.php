@@ -15,11 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('tipo_egreso');
             $table->string('nombre');
-            // $table->unsignedBigInteger('egreso_id');
-            $table->unsignedBigInteger('sub_categoria_id');
-
-            $table->foreign('egreso_id')->references('id')->on('egresos')->onDelete('cascade');
-            // $table->foreign('sub_categoria_id')->references('id')->on('sub_categoria_egresos')->onDelete('cascade');
             $table->timestamps();
         });
     }
