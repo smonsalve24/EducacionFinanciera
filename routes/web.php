@@ -23,4 +23,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('alerts', App\Http\Controllers\AlertasController::class);
 
+Route::resource('users', App\Http\Controllers\UserController::class);
+
+Route::resource('recomendaciones', App\Http\Controllers\RecomendacionesController::class);
+
+Route::resource('personas', App\Http\Controllers\PersonasController::class);
+
 

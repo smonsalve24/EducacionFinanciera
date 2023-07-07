@@ -4,7 +4,7 @@
     <!-- Nav tabs -->
     <ul class="nav nav-tabs text-regular" role="tablist">
         <li role="presentation" class="active">
-            <a href="{{ route('alerts.create') }}">Crear nueva alerta</a>
+            <a href="{{ route('recomendaciones.create') }}">Crear nuevo mensaje</a>
         </li>
     </ul>
 </div>
@@ -22,17 +22,17 @@
 				</td>
 				<td>
 					<h5 class="text-center">
-						Titulo
+						Correo Electronico
 					</h5>
 				</td>
 				<td>
 					<h5 class="text-center">
-						Tipo alerta
+						Mensaje
 					</h5>
 				</td>
 				<td>
 					<h5 class="text-center">
-						Descripción
+						Recomendación
 					</h5>
 				</td>
 				{{-- <td>
@@ -46,8 +46,8 @@
 					</h5>
 				</td>
 			</tr>
-			@if(isset($alertas))
-				@foreach($alertas as $directorio)
+			@if(isset($recomendaciones))
+				@foreach($recomendaciones as $directorio)
 					<tr>
 						<td>
 							<h5 class="text-center">
@@ -55,19 +55,19 @@
 							</h5>
 						</td>
 						<td>
-							<h5 class="text-center">
-								{{$directorio['email_users']}}
+							<h5 class="text-left">
+								{{$directorio['email']}}
 							</h5>
 						</td>
 						<td>
-							<h5 class="text-center">
-								{{$directorio['tipo_alerta']}}
+							<h5 class="text-left">
+								{{$directorio['mensaje']}}
 							</h5>
 						</td>
 						<td>
-							<div class="small text-capitalize text-center" style="max-width: 260px;">
-								{!! substr($directorio['mensaje'], 0, 100)!!}...
-							</div>
+							<h5 class="text-left">
+								{{$directorio['recomendacion']}}
+							</h5>
 						</td>
 						{{-- <td>
 							<h5 class="text-left">
@@ -89,10 +89,10 @@
 							</h5>
 						</td> --}}
 						<td class="text-center">
-							<a href="{{route('alerts.show',$directorio['id'])}}" class="text-center text-info btn">
+							<a href="{{route('recomendaciones.show',$directorio['id'])}}" class="text-center text-info btn">
 								<i class="text-center fa fa-pencil"></i> Editar
 							</a>
-							<form method="POST" action="/alerts/{{$directorio['id']}}">
+							<form method="POST" action="/recomendaciones/{{$directorio['id']}}">
 								@csrf
 								{{method_field('DELETE')}}
 								<button type="submit" class="btn btn-danger">Eliminar</button>
@@ -116,12 +116,12 @@
 	</div>
 </div>
 
-@if(isset($alertas))
-	@foreach($alertas as $directorio)
+@if(isset($recomendaciones))
+	@foreach($recomendaciones as $directorio)
 		<!-- Modal -->
 		<div class="modal fade" id="myModal{{$directorio['id']}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			<div class="modal-dialog" role="document">
-				<form method="DELETE" action="{{ url('alerts/'.$directorio['id']) }}">
+				<form method="DELETE" action="{{ url('recomendaciones/'.$directorio['id']) }}">
 					@csrf
 				<div class="modal-content">
 					<div class="modal-header">

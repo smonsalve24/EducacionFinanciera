@@ -4,7 +4,7 @@
     <!-- Nav tabs -->
     <ul class="nav nav-tabs text-regular" role="tablist">
         <li role="presentation" class="active">
-            <a href="{{ route('alerts.create') }}">Crear nueva alerta</a>
+            <a href="{{ route('personas.create') }}">Crear nuevo usuario</a>
         </li>
     </ul>
 </div>
@@ -22,17 +22,17 @@
 				</td>
 				<td>
 					<h5 class="text-center">
-						Titulo
+						Persona Id
 					</h5>
 				</td>
 				<td>
 					<h5 class="text-center">
-						Tipo alerta
+						Nombre completo
 					</h5>
 				</td>
 				<td>
 					<h5 class="text-center">
-						Descripción
+						Rol
 					</h5>
 				</td>
 				{{-- <td>
@@ -46,8 +46,8 @@
 					</h5>
 				</td>
 			</tr>
-			@if(isset($alertas))
-				@foreach($alertas as $directorio)
+			@if(isset($personas))
+				@foreach($personas as $directorio)
 					<tr>
 						<td>
 							<h5 class="text-center">
@@ -56,18 +56,18 @@
 						</td>
 						<td>
 							<h5 class="text-center">
-								{{$directorio['email_users']}}
+								{{$directorio['persona_id']}}
 							</h5>
 						</td>
 						<td>
 							<h5 class="text-center">
-								{{$directorio['tipo_alerta']}}
+								{{$directorio['nombre']}}
 							</h5>
 						</td>
 						<td>
-							<div class="small text-capitalize text-center" style="max-width: 260px;">
-								{!! substr($directorio['mensaje'], 0, 100)!!}...
-							</div>
+							<h5 class="text-center">
+								{{$directorio['rol']}}
+							</h5>
 						</td>
 						{{-- <td>
 							<h5 class="text-left">
@@ -89,10 +89,10 @@
 							</h5>
 						</td> --}}
 						<td class="text-center">
-							<a href="{{route('alerts.show',$directorio['id'])}}" class="text-center text-info btn">
+							<a href="{{route('personas.show',$directorio['id'])}}" class="text-center text-info btn">
 								<i class="text-center fa fa-pencil"></i> Editar
 							</a>
-							<form method="POST" action="/alerts/{{$directorio['id']}}">
+							<form method="POST" action="/personas/{{$directorio['id']}}">
 								@csrf
 								{{method_field('DELETE')}}
 								<button type="submit" class="btn btn-danger">Eliminar</button>
@@ -116,8 +116,8 @@
 	</div>
 </div>
 
-@if(isset($alertas))
-	@foreach($alertas as $directorio)
+@if(isset($users))
+	@foreach($users as $directorio)
 		<!-- Modal -->
 		<div class="modal fade" id="myModal{{$directorio['id']}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			<div class="modal-dialog" role="document">
