@@ -19,8 +19,8 @@
                 <div class="form-group">
                     <label for="" class="control-label col-md-2">Usuarios afectados:</label>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" name="email" placeholder="Correo electronico">
-                        @error('email')
+                        <input type="text" class="form-control" name="correo_usuario" placeholder="Correo electronico">
+                        @error('correo_usuario')
     <div class="alert alert-danger">{{ $message }}</div>
 @enderror
                     </div>

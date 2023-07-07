@@ -35,7 +35,7 @@ class RecomendacionesController extends Controller
     public function store(Request $request)
     {
         $validator = \Validator::make($request->all(), [
-            'email' => 'required',
+            'correo_usuario' => 'required',
             'mensaje' => 'required',
             'recomendacion' => 'required',
         ]);
@@ -46,9 +46,10 @@ class RecomendacionesController extends Controller
                 ->withInput();
         } else {
             $store = new Recomendacion;
-            $store->email = $request->input('email');
+            $store->correo_usuario = $request->input('correo_usuario');
             $store->mensaje = $request->input('mensaje');
             $store->recomendacion = $request->input('recomendacion');
+
             if ($store->save()) {
 
                 return back()->with('success', 'Su item se guardó correctamente');
@@ -82,7 +83,7 @@ class RecomendacionesController extends Controller
     public function update(Request $request, string $id)
     {
         $validator = \Validator::make($request->all(), [
-            'email' => 'required',
+            'correo_usuario' => 'required',
             'mensaje' => 'required',
             'recomendacion' => 'required',
         ]);
@@ -93,7 +94,7 @@ class RecomendacionesController extends Controller
                 ->withInput();
         } else {
             $store = Recomendacion::find($id);
-            $store->email = $request->input('email');
+            $store->correo_usuario = $request->input('correo_usuario');
             $store->mensaje = $request->input('mensaje');
             $store->recomendacion = $request->input('recomendacion');
             if ($store->update()) {

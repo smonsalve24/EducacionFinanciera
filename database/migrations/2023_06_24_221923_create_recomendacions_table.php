@@ -16,9 +16,6 @@ return new class extends Migration
             $table->string('correo_usuario');
             $table->longText('mensaje');
             $table->string('recomendacion');
-            $table->unsignedBigInteger('persona_id');
-            $table->foreign('persona_id')->references('id')->on('users')->onDelete('cascade');
-            
             $table->timestamps();
         });
     }
