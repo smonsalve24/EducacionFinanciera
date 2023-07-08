@@ -29,4 +29,7 @@ Route::resource('recomendaciones', App\Http\Controllers\RecomendacionesControlle
 
 Route::resource('personas', App\Http\Controllers\PersonasController::class);
 
+Route::resource('ingresos', App\Http\Controllers\IngresosController::class);
+
+
 
