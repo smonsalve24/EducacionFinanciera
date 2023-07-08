@@ -16,6 +16,18 @@
         <form method="POST" action="{{ route('users.store') }}">
             @csrf
             <div class="form-horizontal">
+                <div class="form-group">
+                    <label for="" class="control-label col-md-2">Rol:</label>
+                    <div class="col-md-6">
+                        <select name="rol" id="" >
+                            <option value="administrador">Administrador</option>
+                            <option value="cliente">Usuario</option>
+                        </select>
+                    </div>
+                    @error('rol')
+    <div class="alert alert-danger">{{ $message }}</div>
+@enderror
+                </div>
                 <div class="form-group mt-3 mt-3">
                     <label for="" class="control-label col-md-2">Nombre usuario:</label>
                     <div class="col-md-6">

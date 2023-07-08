@@ -16,7 +16,20 @@
 	<form method="POST" action="/users/{{$user['id']}}">
 		@csrf
 		{{method_field('PUT')}}
+		
 		<div class="form-horizontal">
+			<div class="form-group">
+				<label for="" class="control-label col-md-2">Persona rol:</label>
+				<div class="col-md-6">
+					<select name="persona_id" id="">
+                        <option value="administrador" @if($user->hasRole('administrador')) selected @endif >Administrador</option>
+                        <option value="cliente" @if($user->hasRole('cliente')) selected @endif >Cliente</option>
+					</select>
+				</div>
+				@error('persona_id')
+<div class="alert alert-danger">{{ $message }}</div>
+@enderror
+			</div>
 			<div class="form-group">
 				<label for="" class="control-label col-md-2">Usuarios afectados:</label>
 				<div class="col-md-6">

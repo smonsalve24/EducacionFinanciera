@@ -145,6 +145,7 @@
                 </a>
                 <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
+                  @if(@Auth::user()->hasRole('administrador'))
                   <li class="nav-item">
                     <a href="{{ url('home') }}" class="nav-link text-white {{Request::is('home') ? 'active' : '' }}" aria-current="page">
                       <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
@@ -157,12 +158,12 @@
                       Usuarios
                     </a>
                   </li>
-                  <li>
+                  {{-- <li>
                     <a href="{{ url('personas') }}" class="nav-link text-white {{Request::is('personas') ? 'active' : '' }}" aria-current="page">
                       <svg class="bi me-2" width="16" height="16"><use xlink:href="#collection"></use></svg>
                       Personas
                     </a>
-                  </li>
+                  </li> --}}
                   <li>
                     <a href="{{ url('alerts') }}" class="nav-link text-white {{Request::is('alerts') ? 'active' : '' }}" aria-current="page">
                       <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
@@ -175,7 +176,7 @@
                       Recomendaciones
                     </a>
                   </li>
-                 
+                 @endif
                 </ul>
                 <hr>
                 <div class="dropdown">
