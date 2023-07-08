@@ -34,7 +34,7 @@
 					</th>
 					<th scope="col">
 						<h5 class="text-center">
-							Password
+							Tipo de rol
 						</h5>
 					</th>
 					<th scope="col">
@@ -65,7 +65,7 @@
 							</td>
 							<td>
 								<h5 class="text-left">
-									{{$directorio['password']}}
+									{{$directorio->roles->first()->name}}
 								</h5>
 							</td>
 							{{-- <td>

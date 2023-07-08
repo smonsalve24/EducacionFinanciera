@@ -50,6 +50,7 @@ class UserController extends Controller
             $store->name = $request->input('name');
             $store->email = $request->input('email');
             $store->password = $request->input('password');
+            $store->assignRole($request->input('rol'));
             if ($store->save()) {
 
                 return back()->with('success', 'Su item se guardó correctamente');
@@ -97,6 +98,7 @@ class UserController extends Controller
             $store->name = $request->input('name');
             $store->email = $request->input('email');
             $store->password = $request->input('password');
+            $store->assignRole($request->input('rol'));
             if ($store->update()) {
 
                 return back()->with('success', 'Su item se guardó correctamente');
