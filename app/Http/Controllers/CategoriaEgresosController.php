@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class IngresoController extends Controller
+class CategoriaEgresosController extends Controller
 {
     
     public function __construct()
@@ -16,7 +17,7 @@ class IngresoController extends Controller
      */
     public function index()
     {
-        return 'hola';
+        return view('administrativo.categoriaEgresos.categorias');
     }
 
     /**
