@@ -25,6 +25,8 @@ Route::group(['middleware' => ['role:administrador']], function () {
     Route::resource('recomendaciones', App\Http\Controllers\RecomendacionesController::class);
     // Route::resource('personas', App\Http\Controllers\PersonasController::class);
     Route::resource('alerts', App\Http\Controllers\AlertasController::class);
+    Route::resource('categoria-ingreso', App\Http\Controllers\CategoriaIngresoController::class);
+    Route::resource('categoria-egreso', App\Http\Controllers\CategoriaEgresosController::class);
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
