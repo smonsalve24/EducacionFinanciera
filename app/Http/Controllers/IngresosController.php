@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ingreso as Ingreso;
 use App\Models\Categoria_ingreso as Categoria_ingreso;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -56,6 +57,7 @@ class IngresosController extends Controller
             $store->valor = $request->input('valor');
             $store->fecha = $request->input('fecha');;
             $store->descripcion = $request->input('descripcion');
+            $store->persona_id = @Auth::user()->id;
             $store->categoria_ingreso_id = $request->input('categoria_ingreso_id');
 
             if ($store->save()) {
@@ -109,6 +111,7 @@ class IngresosController extends Controller
             $store->valor = $request->input('valor');
             $store->fecha = $request->input('fecha');;
             $store->descripcion = $request->input('descripcion');
+            $store->persona_id = @Auth::user()->id;
             $store->categoria_ingreso_id = $request->input('categoria_ingreso_id');
 
             if ($store->save()) {

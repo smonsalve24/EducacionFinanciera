@@ -48,7 +48,7 @@ class CategoriaIngresoController extends Controller
             $store = new Categoria_ingreso;
             $store->tipo_ingreso = '1';
             $store->nombre = $request->input('nombre_categoria');
-            // $store->mensaje = $request->input('mensaje');
+            $store->mensaje = $request->input('mensaje');
             if ($store->save()) {
 
                 return back()->with('success', 'Su categoría se guardó correctamente');

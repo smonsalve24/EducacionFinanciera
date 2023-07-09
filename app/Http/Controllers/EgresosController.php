@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Egreso as Egreso;
 use App\Models\Categoria_egreso as Categoria_egreso;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class EgresosController extends Controller
@@ -53,6 +54,7 @@ class EgresosController extends Controller
             $store->valor = $request->input('valor');
             $store->fecha = $request->input('fecha');;
             $store->descripcion = $request->input('descripcion');
+            $store->persona_id = @Auth::user()->id;
             $store->categoria_egreso_id = $request->input('categoria_egreso_id');
 
             if ($store->save()) {
@@ -109,6 +111,7 @@ class EgresosController extends Controller
             $store->valor = $request->input('valor');
             $store->fecha = $request->input('fecha');;
             $store->descripcion = $request->input('descripcion');
+            $store->persona_id = @Auth::user()->id;
             $store->categoria_egreso_id = $request->input('categoria_egreso_id');
 
             if ($store->save()) {
