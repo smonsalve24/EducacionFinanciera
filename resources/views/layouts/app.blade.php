@@ -282,6 +282,26 @@
                                     Recomendaciones
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ url('ingresos') }}"
+                                    class="nav-link text-white {{ Request::is('ingresos') ? 'active' : '' }}"
+                                    aria-current="page">
+                                    <svg class="bi me-2" width="16" height="16">
+                                        <use xlink:href="#toggles2"></use>
+                                    </svg>
+                                    Ingresos
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('Egresos') }}"
+                                    class="nav-link text-white {{ Request::is('Egresos') ? 'active' : '' }}"
+                                    aria-current="page">
+                                    <svg class="bi me-2" width="16" height="16">
+                                        <use xlink:href="#speedometer2"></use>
+                                    </svg>
+                                    Egresos
+                                </a>
+                            </li>
                         @endif
                     </ul>
                     <hr>
