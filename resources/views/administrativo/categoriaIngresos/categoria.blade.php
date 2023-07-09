@@ -113,8 +113,9 @@
             <div class="modal fade" id="myModal{{ $directorio['id'] }}" tabindex="-1" role="dialog"
                 aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
-                    <form method="PUT" action="{{ url('categoria-ingreso/' . $directorio['id']) }}">
+                    <form method="POST" action="{{ url('categoria-ingreso/' . $directorio['id']) }}">
                         @csrf
+						{{method_field('DELETE')}}
                         <div class="modal-content">
                             <div class="modal-header">
 								<h4 class="modal-title" id="myModalLabel">Eliminar {{$directorio['nombre']}}</h4>
@@ -141,8 +142,9 @@
             <div class="modal fade" id="myModalEdit{{$directorio['id']}}" tabindex="-1" role="dialog"
                 aria-labelledby="myModalLabel{{$directorio['id']}}">
                 <div class="modal-dialog" role="document">
-                    <form method="PUT" action="{{ url('categoria-ingreso/' . $directorio['id']) }}">
+                    <form method="POST" action="{{ url('categoria-ingreso/' . $directorio['id']) }}">
                         @csrf
+						{{method_field('PUT')}}
 						<div class="modal-content">
 							<div class="modal-header">
 								<h4 class="modal-title" id="myModalLabel">Editar {{$directorio['nombre']}}</h4>

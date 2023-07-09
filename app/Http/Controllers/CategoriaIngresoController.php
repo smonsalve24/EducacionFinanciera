@@ -90,7 +90,7 @@ class CategoriaIngresoController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         } else {
-            $store = new Categoria_ingreso;
+            $store = Categoria_ingreso::find($id);
             $store->tipo_ingreso = '1';
             $store->nombre = $request->input('nombre_categoria');
             // $store->mensaje = $request->input('mensaje');

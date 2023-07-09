@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Categoria_egreso;
 
 class CategoriaEgresosController extends Controller
 {
@@ -17,7 +18,8 @@ class CategoriaEgresosController extends Controller
      */
     public function index()
     {
-        return view('administrativo.categoriaEgresos.categorias');
+        $catEgreso = Categoria_egreso::all();
+        return view('administrativo.categoriaEgresos.categorias', compact('catEgreso'));
     }
 
     /**
@@ -33,7 +35,28 @@ class CategoriaEgresosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = \Validator::make($request->all(), [
+            'nombre_categoria' => 'required',
+            'mensaje' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            $store = new Categoria_egreso;
+            $store->tipo_egreso = '1';
+            $store->nombre = $request->input('nombre_categoria');
+            // $store->mensaje = $request->input('mensaje');
+            if ($store->save()) {
+
+                return back()->with('success', 'Su categoría se guardó correctamente');
+            } else {
+                return back()->with('error', 'Su categoría no se guardó correctamente');
+
+            }
+        }
     }
 
     /**
@@ -57,7 +80,28 @@ class CategoriaEgresosController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validator = \Validator::make($request->all(), [
+            'nombre_categoria' => 'required',
+            'mensaje' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            $store = Categoria_egreso::find($id);
+            $store->tipo_egreso = '1';
+            $store->nombre = $request->input('nombre_categoria');
+            // $store->mensaje = $request->input('mensaje');
+            if ($store->update()) {
+
+                return back()->with('success', 'Su categoría se guardó correctamente');
+            } else {
+                return back()->with('error', 'Su categoría no se guardó correctamente');
+
+            }
+        }
     }
 
     /**
@@ -65,6 +109,8 @@ class CategoriaEgresosController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $store = Categoria_egreso::find($id);
+        $store->delete();
+        return back()->with('success', 'Su item se eliminó correctamente');
     }
 }
