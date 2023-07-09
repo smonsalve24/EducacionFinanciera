@@ -141,14 +141,21 @@
             <div class="modal fade" id="myModalEdit{{$directorio['id']}}" tabindex="-1" role="dialog"
                 aria-labelledby="myModalLabel{{$directorio['id']}}">
                 <div class="modal-dialog" role="document">
-                    <form method="DELETE" action="{{ url('categoria-ingreso/' . $directorio['id']) }}">
+                    <form method="PUT" action="{{ url('categoria-ingreso/' . $directorio['id']) }}">
                         @csrf
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title" id="myModalLabel">Editar {{$directorio['nombre']}}</h4>
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                            </div>
+							<div class="modal-body">
                         <div class="form-horizontal text-dark">
 							<div class="form-group mb-4">
 								<label for="" class="control-label text-bold">Nombre de la categoría:</label>
 								<div class="col-md-12">
 									<input type="text" class="form-control" name="nombre_categoria"
-										placeholder="Ej:. hogar" value="{{old('nombre_categoria', $directorio['nombre_categoria'])}}">
+										placeholder="Ej:. hogar" value="{{old('nombre_categoria', $directorio['nombre'])}}">
 									@error('nombre_categoria')
 										<div class="alert alert-danger">{{ $message }}</div>
 									@enderror
@@ -164,6 +171,11 @@
 								</div>
 							</div>
 						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-success">Actualizar</button>
+					</div>
+					</div>
                     </form>
                 </div>
             </div>

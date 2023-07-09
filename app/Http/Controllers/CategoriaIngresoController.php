@@ -80,7 +80,28 @@ class CategoriaIngresoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validator = \Validator::make($request->all(), [
+            'nombre_categoria' => 'required',
+            'mensaje' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            $store = new Categoria_ingreso;
+            $store->tipo_ingreso = '1';
+            $store->nombre = $request->input('nombre_categoria');
+            // $store->mensaje = $request->input('mensaje');
+            if ($store->update()) {
+
+                return back()->with('success', 'Su categoría se guardó correctamente');
+            } else {
+                return back()->with('error', 'Su categoría no se guardó correctamente');
+
+            }
+        }
     }
 
     /**
@@ -88,6 +109,8 @@ class CategoriaIngresoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $store = Categoria_ingreso::find($id);
+        $store->delete();
+        return back()->with('success', 'Su item se eliminó correctamente');
     }
 }
