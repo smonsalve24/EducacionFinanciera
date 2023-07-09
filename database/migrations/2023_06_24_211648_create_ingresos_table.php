@@ -16,6 +16,8 @@ return new class extends Migration
             $table->double('valor');
             $table->date('fecha');
             $table->string('descripcion');
+            $table->unsignedBigInteger('persona_id');
+            $table->foreign('persona_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('categoria_ingreso_id');
             $table->foreign('categoria_ingreso_id')->references('id')->on('categoria_ingresos')->onDelete('cascade');
             $table->timestamps();
