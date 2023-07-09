@@ -2,27 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ingreso as Ingreso;
-use App\Models\Categoria_ingreso as Categoria_ingreso;
-
+use App\Models\Egreso as Egreso;
+use App\Models\Categoria_egreso as Categoria_egreso;
 use Illuminate\Http\Request;
 
-class IngresosController extends Controller
+class EgresosController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
     }
-
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // return "hola";
-        $ingresos = Ingreso::all();
-        $categorias = Categoria_ingreso::all();
-        return view('administrativo.ingresos.ingreso', compact('ingresos', 'categorias'));
+         // return "hola";
+         $egresos = Egreso::all();
+         $categorias = Categoria_egreso::all();
+         return view('administrativo.egresos.egreso', compact('egresos', 'categorias'));
     }
 
     /**
@@ -30,9 +28,8 @@ class IngresosController extends Controller
      */
     public function create()
     {
-        $categorias = Categoria_ingreso::all();
-        return view('administrativo.ingresos.create', compact('categorias'));
-        
+        $categorias = Categoria_egreso::all();
+        return view('administrativo.egresos.create', compact('categorias'));
     }
 
     /**
@@ -44,7 +41,7 @@ class IngresosController extends Controller
             'valor' => 'required',
             'fecha' => 'required',
             'descripcion' => 'required',
-            'categoria_ingreso_id' => 'required',
+            'categoria_egreso_id' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -52,11 +49,11 @@ class IngresosController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         } else {
-            $store = new Ingreso;
+            $store = new Egreso;
             $store->valor = $request->input('valor');
             $store->fecha = $request->input('fecha');;
             $store->descripcion = $request->input('descripcion');
-            $store->categoria_ingreso_id = $request->input('categoria_ingreso_id');
+            $store->categoria_egreso_id = $request->input('categoria_egreso_id');
 
             if ($store->save()) {
 
@@ -68,16 +65,19 @@ class IngresosController extends Controller
         }
     }
 
+
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
+        {
 
-         // return "hola";
-        $ingresos = Ingreso::find($id);
-        $categorias = Categoria_ingreso::all();
-        return view('administrativo.ingresos.edit', compact('categorias', 'ingresos'));
+            // return "hola";
+           $egresos = Egreso::find($id);
+           $categorias = Categoria_egreso::all();
+           return view('administrativo.egresos.edit', compact('categorias', 'egresos'));
+       }
     }
 
     /**
@@ -97,7 +97,7 @@ class IngresosController extends Controller
             'valor' => 'required',
             'fecha' => 'required',
             'descripcion' => 'required',
-            'categoria_ingreso_id' => 'required',
+            'categoria_egreso_id' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -105,11 +105,11 @@ class IngresosController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         } else {
-            $store = Ingreso::find($id);
+            $store = Egreso::find($id);
             $store->valor = $request->input('valor');
             $store->fecha = $request->input('fecha');;
             $store->descripcion = $request->input('descripcion');
-            $store->categoria_ingreso_id = $request->input('categoria_ingreso_id');
+            $store->categoria_egreso_id = $request->input('categoria_egreso_id');
 
             if ($store->save()) {
 
@@ -126,7 +126,7 @@ class IngresosController extends Controller
      */
     public function destroy(string $id)
     {
-        $store = Ingreso::find($id);
+        $store = Egreso::find($id);
         $store->delete();
         return back()->with('success', 'Su item se eliminó correctamente');
     }

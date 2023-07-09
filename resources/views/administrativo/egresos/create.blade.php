@@ -13,7 +13,7 @@
 			    <strong>{{ $message }}</strong>
 			</div>
 		@endif
-        <form method="POST" action="{{ route('ingresos.store') }}">
+        <form method="POST" action="{{ route('egresos.store') }}">
             @csrf
             <div class="form-horizontal">
                 <div class="form-group">
@@ -46,7 +46,7 @@
                 <div class="form-group">
                     <label for="" class="control-label col-md-2">Categoria:</label>
                     <div class="col-md-6">
-                        <select name="categoria_ingreso_id" id="">
+                        <select name="categoria_egreso_id" id="">
                             @if(isset($categorias))
                             @foreach($categorias as $categoria)
                                 <option value="{{$categoria['id']}}">{{$categoria['nombre']}}</option>
@@ -55,7 +55,7 @@
                             @endif
                         </select>
                     </div>
-                    @error('categoria_ingreso_id')
+                    @error('categoria_egreso_id')
     <div class="alert alert-danger">{{ $message }}</div>
 @enderror
                 </div>
@@ -64,7 +64,7 @@
                         <input type="submit" class="btn btn-primary" value="Guardar Item">
                     </div>
                     <div class="col-md-offset-2 col-md-10 mt-3">
-                        <a href="{{url('ingresos')}}" class="btn btn-danger">Regresar</a>
+                        <a href="{{url('egresos')}}" class="btn btn-danger">Regresar</a>
                     </div>
                 </div>
             </div>

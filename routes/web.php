@@ -33,6 +33,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::resource('ingresos', App\Http\Controllers\IngresosController::class);
+Route::resource('egresos', App\Http\Controllers\EgresosController::class);
+
 
 
 

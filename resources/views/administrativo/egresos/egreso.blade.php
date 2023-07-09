@@ -4,7 +4,7 @@
     <!-- Nav tabs -->
     <ul class="nav nav-tabs text-regular" role="tablist">
         <li role="presentation" class="active">
-            <a href="{{ route('ingresos.create') }}">Crear ingreso</a>
+            <a href="{{ route('egresos.create') }}">Crear ingreso</a>
         </li>
     </ul>
 </div>
@@ -46,8 +46,8 @@
 					</h5>
 				</td>
 			</tr>
-			@if(isset($ingresos))
-				@foreach($ingresos as $directorio)
+			@if(isset($egresos))
+				@foreach($egresos as $directorio)
 					<tr>
 						<td>
 							<h5 class="text-center">
@@ -73,7 +73,7 @@
 							<h5 class="text-left">
 								@if(isset($categorias))
 									@foreach($categorias as $categoria)
-										@if($categoria['id'] == $directorio['categoria_ingreso_id'])
+										@if($categoria['id'] == $directorio['categoria_egreso_id'])
 
 										{{$categoria['nombre']}}
 										@endif
@@ -96,10 +96,10 @@
 							</h5>
 						</td> --}}
 						<td class="text-center">
-							<a href="{{route('ingresos.show',$directorio['id'])}}" class="text-center text-info btn">
+							<a href="{{route('egresos.show',$directorio['id'])}}" class="text-center text-info btn">
 								<i class="text-center fa fa-pencil"></i> Editar
 							</a>
-							<form method="POST" action="/ingresos/{{$directorio['id']}}">
+							<form method="POST" action="/egresos/{{$directorio['id']}}">
 								@csrf
 								{{method_field('DELETE')}}
 								<button type="submit" class="btn btn-danger">Eliminar</button>
@@ -123,12 +123,12 @@
 	</div>
 </div>
 
-@if(isset($ingresos))
-	@foreach($ingresos as $directorio)
+@if(isset($egresos))
+	@foreach($egresos as $directorio)
 		<!-- Modal -->
 		<div class="modal fade" id="myModal{{$directorio['id']}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			<div class="modal-dialog" role="document">
-				<form method="DELETE" action="{{ url('ingresos/'.$directorio['id']) }}">
+				<form method="DELETE" action="{{ url('egresos/'.$directorio['id']) }}">
 					@csrf
 				<div class="modal-content">
 					<div class="modal-header">

@@ -176,6 +176,18 @@
                       Recomendaciones
                     </a>
                   </li>
+                  <li>
+                    <a href="{{ url('ingresos') }}" class="nav-link text-white {{Request::is('ingresos') ? 'active' : '' }}" aria-current="page">
+                      <svg class="bi me-2" width="16" height="16"><use xlink:href="#chevron-right"></use></svg>
+                      Ingresos
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ url('egresos') }}" class="nav-link text-white {{Request::is('egresos') ? 'active' : '' }}" aria-current="page">
+                      <svg class="bi me-2" width="16" height="16"><use xlink:href="#toggles2"></use></svg>
+                      Egresos
+                    </a>
+                  </li>
                  @endif
                 </ul>
                 <hr>
@@ -185,7 +197,7 @@
                     <strong>{{ Auth::user()->name }}</strong>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="#">New project...</a></li>
+                    <li><a class="dropdown-item" href="{{ url('ingresos') }}" class="nav-link text-white {{Request::is('ingresos') ? 'active' : '' }}" aria-current="page">Nuevo ingreso</a></li>
                     <li><a class="dropdown-item" href="#">Settings</a></li>
                     <li><a class="dropdown-item" href="#">Profile</a></li>
                     <li><hr class="dropdown-divider"></li>                   
