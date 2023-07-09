@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->double('valor');
             $table->date('fecha');
-            $table->string('nombre');
-            $table->unsignedBigInteger('alerta_id');
-            $table->foreign('alerta_id')->references('id')->on('alertas')->onDelete('cascade');
+            $table->string('descripcion');
+            $table->unsignedBigInteger('categoria_egreso_id');
+            $table->foreign('categoria_egreso_id')->references('id')->on('categoria_egresos')->onDelete('cascade');
 
             
             $table->timestamps();
