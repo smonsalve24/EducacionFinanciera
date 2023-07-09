@@ -293,8 +293,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ url('Egresos') }}"
-                                    class="nav-link text-white {{ Request::is('Egresos') ? 'active' : '' }}"
+                                <a href="{{ url('egresos') }}"
+                                    class="nav-link text-white {{ Request::is('egresos') ? 'active' : '' }}"
                                     aria-current="page">
                                     <svg class="bi me-2" width="16" height="16">
                                         <use xlink:href="#speedometer2"></use>
