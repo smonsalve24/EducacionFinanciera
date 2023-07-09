@@ -24,11 +24,11 @@ body{
 	color: #f5f8fa;
 }
 .sidebar{
-	margin-top: 42px;
 	position: fixed;
 	padding: 0px;
 	height: 100%;
 	background: #3c3c3b;
+	width: 100%;
 }
 .navbar{
 	background:  #be1622 !important;

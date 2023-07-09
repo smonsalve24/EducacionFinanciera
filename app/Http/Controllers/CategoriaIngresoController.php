@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Categoria_ingreso;
 
 class CategoriaIngresoController extends Controller
 {
@@ -17,7 +18,8 @@ class CategoriaIngresoController extends Controller
      */
     public function index()
     {
-        return view('administrativo.categoriaIngresos.categoria');
+        $catIngreso = Categoria_ingreso::all();
+        return view('administrativo.categoriaIngresos.categoria', compact('catIngreso'));
     }
 
     /**
@@ -33,7 +35,28 @@ class CategoriaIngresoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = \Validator::make($request->all(), [
+            'nombre_categoria' => 'required',
+            'mensaje' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            $store = new Categoria_ingreso;
+            $store->tipo_ingreso = '1';
+            $store->nombre = $request->input('nombre_categoria');
+            // $store->mensaje = $request->input('mensaje');
+            if ($store->save()) {
+
+                return back()->with('success', 'Su categoría se guardó correctamente');
+            } else {
+                return back()->with('error', 'Su categoría no se guardó correctamente');
+
+            }
+        }
     }
 
     /**
