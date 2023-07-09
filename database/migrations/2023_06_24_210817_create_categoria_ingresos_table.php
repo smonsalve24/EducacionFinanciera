@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('tipo_ingreso');
             $table->string('nombre');
+            $table->string('mensaje');
             $table->timestamps();
         });
     }
