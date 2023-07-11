@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('historicos', function (Blueprint $table) {
             $table->id();
-            $table->string('descargas');
             $table->date('rango_fecha');
             $table->unsignedBigInteger('ingreso_id');
             $table->foreign('ingreso_id')->references('id')->on('ingresos')->onDelete('cascade');
