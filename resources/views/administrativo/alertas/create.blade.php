@@ -32,9 +32,9 @@
                     <label for="" class="control-label col-md-2">Tipo de alerta:</label>
                     <div class="col-md-6">
                         <select name="tipo_alerta" id="">
-                            <option value="0">hola</option>
-                            <option value="1">hola 1</option>
-                            <option value="2">hola 2</option>
+                            <option value="0">Alerta</option>
+                            <option value="1">Advertencia</option>
+                            <option value="2">recomendación</option>
                         </select>
                     </div>
                     @error('tipo_alerta')
