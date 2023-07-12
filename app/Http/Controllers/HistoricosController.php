@@ -8,6 +8,7 @@ use App\Models\Historico as Historico;
 use App\Models\Recomendacion as Recomendacion;
 use App\Models\Categoria_ingreso as Categoria_ingreso;
 use App\Models\Categoria_egreso as Categoria_egreso;
+use App\Models\Alerta as Alerta;
 
 
 
@@ -35,7 +36,8 @@ class HistoricosController extends Controller
         $recomendaciones = Recomendacion::all();
         $categorias = Categoria_ingreso::all();
         $categoriasE = Categoria_egreso::all();
-        return view('administrativo.historico.historico', compact('historicos', 'recomendaciones','categorias','arrayList','categoriasE'));
+        $alertas = Alerta::all();
+        return view('administrativo.historico.historico', compact('historicos', 'recomendaciones','categorias','arrayList','categoriasE', 'alertas'));
     }
 
     /**

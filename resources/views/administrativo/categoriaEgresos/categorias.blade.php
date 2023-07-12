@@ -96,7 +96,7 @@
                                             <i class="text-center fa fa-pencil"></i> Editar
                                         </a>
 										<a class="text-center text-danger btn" data-bs-toggle="modal" data-bs-target="#myModal{{ $directorio['id'] }}">
-                                            <i class="text-center fa fa-pencil"></i> Eliminar
+                                            <i class="text-center fa fa-close"></i> Eliminar
                                         </a>
                                     </td>
                                 </tr>
