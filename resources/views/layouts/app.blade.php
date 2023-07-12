@@ -203,6 +203,7 @@
         <div class="row py-0">
             @guest
             @else
+            @if (@Auth::user() && @Auth::user()->hasRole('administrador'))
                 <div class=" col-xs-2 col-sm-2 col-md-2 col-lg-2 position-relative" >
                   <div class="sidebar"  style="position: absolute !important">
                     <!-- Left Side Of Navbar -->
@@ -215,7 +216,7 @@
                     </a>
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto">
-                        @if (@Auth::user()->hasRole('administrador'))
+                        
                             <li class="nav-item">
                                 <a href="{{ url('home') }}"
                                     class="nav-link text-white {{ Request::is('home') ? 'active' : '' }}"
@@ -302,17 +303,22 @@
                                     Egresos
                                 </a>
                             </li>
-                        @endif
+                        
                     </ul>
                     <hr>
                   </div>
 
 
                 </div>
-
+                @endif
             @endguest
+            @if (@Auth::user() && @Auth::user()->hasRole('administrador'))
             <div class="col-xs-10 col-sm-10  col-md-10  col-lg-8 "
                 >
+                @elseif(@Auth::user() && @Auth::user()->hasRole('cliente'))
+                <div class="col-xs-12 col-sm-12  col-md-12  col-lg-12 "
+                >
+            @endif
                 <div class="panel-header">
                     <!-- Nav tabs -->
                 </div>
@@ -321,6 +327,7 @@
         </div>
     </div>
     <script src="{{ asset('js/app.js')}}"></script>
+    @yield('scripts-personal')
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> --}}
 </body>
 

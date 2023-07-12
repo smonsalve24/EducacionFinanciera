@@ -36,7 +36,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('ingresos', App\Http\Controllers\IngresosController::class);
 Route::resource('egresos', App\Http\Controllers\EgresosController::class);
-Route::resource('historicos', App\Http\Controllers\HistoricosController::class);
+Route::get('historicos', [App\Http\Controllers\HistoricosController::class, 'index'])->name('historicos');
 
 
 

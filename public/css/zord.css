@@ -17,6 +17,10 @@ body{
 	min-height: 100%;
 }
 
+#movementHistory{
+	max-height: 450px;
+    overflow: auto;
+}
 .sidebar a:hover{
 	color: #1f668e;
 }

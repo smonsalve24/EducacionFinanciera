@@ -5,8 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Ingreso as Ingreso;
 use App\Models\Egreso as Egreso;
 use App\Models\Historico as Historico;
+use App\Models\Recomendacion as Recomendacion;
+use App\Models\Categoria_ingreso as Categoria_ingreso;
+use App\Models\Categoria_egreso as Categoria_egreso;
+
+
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HistoricosController extends Controller
 {
@@ -19,10 +25,17 @@ class HistoricosController extends Controller
      */
     public function index()
     {
-        $ingresos = Ingreso::all();
-        $egresos = Egreso::all();
+        $ingresos = Ingreso::where('persona_id', '=', Auth::user()->id)->orderBy('fecha', 'DESC')->get();
+        $egresos = Egreso::where('persona_id', '=', Auth::user()->id)->orderBy('fecha', 'DESC')->get();
+        $arrayList = array_merge($ingresos->toArray(), $egresos->toArray());
+        usort($arrayList, function ($a, $b) {
+            return strcmp($b["fecha"], $a["fecha"]);
+        });
         $historicos = Historico::all();
-        return view('administrativo.historico.historico', compact('historicos', 'ingresos', 'egresos'));
+        $recomendaciones = Recomendacion::all();
+        $categorias = Categoria_ingreso::all();
+        $categoriasE = Categoria_egreso::all();
+        return view('administrativo.historico.historico', compact('historicos', 'recomendaciones','categorias','arrayList','categoriasE'));
     }
 
     /**

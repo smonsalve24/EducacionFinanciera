@@ -27,7 +27,7 @@ class HomeController extends Controller
         if(Auth::user()->hasRole('administrador')){
             return view('home');
         }elseif(Auth::user()->hasRole('cliente')){
-            return view('administrativo.historico.index');
+            return redirect('/historicos');
         }
     }
 }
