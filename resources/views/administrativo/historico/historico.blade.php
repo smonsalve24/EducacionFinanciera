@@ -9,17 +9,22 @@
                         type="button" role="tab" aria-controls="nav-home" aria-selected="true">Histórico</button>
                     <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
                         type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Alertas</button>
-						<form method="POST" action="{{ url('historicos-export/') }}">
-							@csrf
-						<div class="ms-auto d-flex">Filtrar por fecha: 
-							<div>
-								<input type="date" id="myInputInicial" name="fecha"  onchange="myFunction()" placeholder="Search for names..">
+                    <form method="POST" action="{{ url('historicos-export/') }}" class="ms-auto">
+                        @csrf
+                        <div class=" d-flex">Filtrar por fecha:
+                            <div>
+                                <input type="date" id="myInputInicial" name="fecha" onchange="myFunction()"
+                                    placeholder="Search for names..">
+                            </div>
+							<div type="button" onclick="clearFecha()" class="mx-2" id="clearDate" title="limpiar filtro" style="cursor: pointer;">
+								<em class="fa fa-refresh cursor-pointer" ></em>
 							</div>
-							<div class="ms-2">
-								<button type="submit" title="Descargar archivo excel"><em class="fa fa-download"></em></button>
-							</div>
-						</div>
-					</form>
+                            <div class="ms-0">
+                                <button type="submit" title="Descargar archivo excel"><em
+                                        class="fa fa-download"></em></button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
@@ -80,7 +85,9 @@
                                                 </h6>
                                             @endif
                                         </td>
-                                        <td data-value='{{ date('Y-m-d', strtotime($directorio['fecha'])) }}'><h6>{{ date('d M Y', strtotime($directorio['fecha'])) }}</h6></td>
+                                        <td data-value='{{ date('Y-m-d', strtotime($directorio['fecha'])) }}'>
+                                            <h6>{{ date('d M Y', strtotime($directorio['fecha'])) }}</h6>
+                                        </td>
                                         <td>
                                             <h6 class="text-center">
                                                 @if (isset($directorio['categoria_egreso_id']))
@@ -195,7 +202,8 @@
 
                                         <td class="text-center d-flex justify-content-center">
 
-                                            <a data-bs-toggle="modal" data-bs-target="#myModalEdit{{ $directorio['id'] }}"
+                                            <a data-bs-toggle="modal"
+                                                data-bs-target="#myModalEdit{{ $directorio['id'] }}"
                                                 class="text-center text-info btn">
                                                 <i class="text-center fa fa-pencil"></i> Editar
                                             </a>
@@ -313,10 +321,12 @@
 
 @section('scripts-personal')
     <script>
+		
         let fieldTotal = document.querySelector('#totalValue h4');
         const entries = [...document.querySelectorAll('.valuePriceEntry')];
         const discharges = [...document.querySelectorAll('.valuePriceDischarge')];
         const alertList = [...document.querySelectorAll('.alertaValue')];
+		let buttonClear = document.getElementById('clearDate');
         let totalEntries = 0;
         let totalDischarges = 0;
         let generalTotal = 0;
@@ -364,7 +374,6 @@
             var input, filter, table, tr, td, i, txtValue;
             input = document.getElementById("myInputInicial");
             filter = input.value.toUpperCase();
-			console.log(filter);
             table = document.getElementById("tableHistory");
             tr = table.getElementsByTagName("tr");
 
@@ -381,5 +390,11 @@
                 }
             }
         }
+
+		function clearFecha(){
+			document.getElementById("myInputInicial").value = '';
+			myFunction()
+		}
+		
     </script>
 @endsection
