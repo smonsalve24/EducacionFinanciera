@@ -9,14 +9,17 @@
                         type="button" role="tab" aria-controls="nav-home" aria-selected="true">Histórico</button>
                     <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
                         type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Alertas</button>
+						<form method="POST" action="{{ url('historicos-export/') }}">
+							@csrf
 						<div class="ms-auto d-flex">Filtrar por fecha: 
 							<div>
-								<input type="date" id="myInputInicial"  onchange="myFunction()" placeholder="Search for names..">
+								<input type="date" id="myInputInicial" name="fecha"  onchange="myFunction()" placeholder="Search for names..">
 							</div>
 							<div class="ms-2">
-								<button title="Descargar archivo excel"><em class="fa fa-download"></em></button>
+								<button type="submit" title="Descargar archivo excel"><em class="fa fa-download"></em></button>
 							</div>
 						</div>
+					</form>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">

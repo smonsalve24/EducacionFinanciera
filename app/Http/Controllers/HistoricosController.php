@@ -10,10 +10,12 @@ use App\Models\Categoria_ingreso as Categoria_ingreso;
 use App\Models\Categoria_egreso as Categoria_egreso;
 use App\Models\Alerta as Alerta;
 
+use App\Exports\HistoryExport;
 
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class HistoricosController extends Controller
 {
@@ -53,15 +55,15 @@ class HistoricosController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
-
+    
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
         //
+        return Excel::download(new HistoryExport($request->input('fecha')), 'movementHistory.xlsx');
     }
 
     /**
@@ -87,4 +89,5 @@ class HistoricosController extends Controller
     {
         //
     }
+
 }
