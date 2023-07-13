@@ -63,7 +63,7 @@ class HistoricosController extends Controller
     public function show(Request $request)
     {
         //
-        return Excel::download(new HistoryExport($request->input('fecha')), 'movementHistory.xlsx');
+        return Excel::download(new HistoryExport($request->input('fecha')), Auth::user()->name.Date('d-m-Y').'.xlsx');
     }
 
     /**
