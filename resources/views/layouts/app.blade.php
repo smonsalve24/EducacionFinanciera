@@ -263,16 +263,7 @@
                                     Categorías de egresos
                                 </a>
                             </li>
-                            <li>
-                                <a href="{{ url('alerts') }}"
-                                    class="nav-link text-white {{ Request::is('alerts') ? 'active' : '' }}"
-                                    aria-current="page">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#alert"></use>
-                                    </svg>
-                                    Alertas
-                                </a>
-                            </li>
+                            
                             <li>
                                 <a href="{{ url('recomendaciones') }}"
                                     class="nav-link text-white {{ Request::is('recomendaciones') ? 'active' : '' }}"
@@ -283,26 +274,7 @@
                                     Recomendaciones
                                 </a>
                             </li>
-                            <li>
-                                <a href="{{ url('ingresos') }}"
-                                    class="nav-link text-white {{ Request::is('ingresos') ? 'active' : '' }}"
-                                    aria-current="page">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#toggles2"></use>
-                                    </svg>
-                                    Ingresos
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url('egresos') }}"
-                                    class="nav-link text-white {{ Request::is('egresos') ? 'active' : '' }}"
-                                    aria-current="page">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#speedometer2"></use>
-                                    </svg>
-                                    Egresos
-                                </a>
-                            </li>
+                            
                         
                     </ul>
                     <hr>

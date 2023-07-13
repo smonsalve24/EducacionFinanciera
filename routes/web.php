@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
@@ -29,15 +27,15 @@ Route::group(['middleware' => ['role:administrador']], function () {
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('alerts', App\Http\Controllers\AlertasController::class);
-Route::resource('ingresos', App\Http\Controllers\IngresosController::class);
-Route::resource('egresos', App\Http\Controllers\EgresosController::class);
 Route::group(['middleware' => ['role:cliente']], function () {
-Route::get('historicos', [App\Http\Controllers\HistoricosController::class, 'index'])->name('historicos');
-Route::post('historicos-export', [App\Http\Controllers\HistoricosController::class, 'show'])->name('historicos');
-
+    Route::resource('alerts', App\Http\Controllers\AlertasController::class);
+    Route::resource('ingresos', App\Http\Controllers\IngresosController::class);
+    Route::resource('egresos', App\Http\Controllers\EgresosController::class);
+    Route::get('historicos', [App\Http\Controllers\HistoricosController::class, 'index'])->name('historicos');
+    Route::post('historicos-export', [App\Http\Controllers\HistoricosController::class, 'show'])->name('historicos');
 });
 
+Route::get('/', [App\Http\Controllers\HistoricosController::class, 'index'])->name('historicos');
 
 
 

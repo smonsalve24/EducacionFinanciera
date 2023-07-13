@@ -28,18 +28,23 @@ class HistoricosController extends Controller
      */
     public function index()
     {
-        $ingresos = Ingreso::where('persona_id', '=', Auth::user()->id)->orderBy('fecha', 'DESC')->get();
-        $egresos = Egreso::where('persona_id', '=', Auth::user()->id)->orderBy('fecha', 'DESC')->get();
-        $arrayList = array_merge($ingresos->toArray(), $egresos->toArray());
-        usort($arrayList, function ($a, $b) {
-            return strcmp($b["fecha"], $a["fecha"]);
-        });
-        $historicos = Historico::all();
-        $recomendaciones = Recomendacion::all();
-        $categorias = Categoria_ingreso::all();
-        $categoriasE = Categoria_egreso::all();
-        $alertas = Alerta::OrderBy('email_users', 'DESC')->get();
-        return view('administrativo.historico.historico', compact('historicos', 'recomendaciones','categorias','arrayList','categoriasE', 'alertas'));
+        if(Auth::user()->hasRole('administrador')){
+            return redirect()->route('home');
+        }else{
+            $ingresos = Ingreso::where('persona_id', '=', Auth::user()->id)->orderBy('fecha', 'DESC')->get();
+            $egresos = Egreso::where('persona_id', '=', Auth::user()->id)->orderBy('fecha', 'DESC')->get();
+            $arrayList = array_merge($ingresos->toArray(), $egresos->toArray());
+            usort($arrayList, function ($a, $b) {
+                return strcmp($b["fecha"], $a["fecha"]);
+            });
+            $historicos = Historico::all();
+            $recomendaciones = Recomendacion::all();
+            $categorias = Categoria_ingreso::all();
+            $categoriasE = Categoria_egreso::all();
+            $alertas = Alerta::OrderBy('email_users', 'DESC')->get();
+            return view('administrativo.historico.historico', compact('historicos', 'recomendaciones','categorias','arrayList','categoriasE', 'alertas'));
+
+        }
     }
 
     /**
