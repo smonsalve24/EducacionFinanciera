@@ -83,10 +83,11 @@
 @if (isset($arrayList))
 @foreach ($arrayList as $directorio)
     <!-- Modal -->
-    <div class="modal fade" id="myModal{{ $directorio['id'] }}" tabindex="-1" role="dialog"
+    @if(isset($directorio['categoria_egreso_id']))
+    <div class="modal fade" id="myModalEgreso{{ $directorio['id'] }}" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
-            <form method="POST" action="{{ url('ingresos/' . $directorio['id']) }}">
+            <form method="POST" action="{{ url('egresos/' . $directorio['id']) }}">
                 @csrf
                 {{method_field('DELETE')}}
                 <div class="modal-content">
@@ -107,6 +108,7 @@
             </form>
         </div>
     </div>
+    @endif
 @endforeach
 @endif
 
@@ -114,10 +116,11 @@
 @if (isset($arrayList))
 @foreach ($arrayList as $directorio)
     <!-- Modal -->
-    <div class="modal fade" id="myModalEdit{{$directorio['id']}}" tabindex="-1" role="dialog"
+    @if(isset($directorio['categoria_egreso_id']))
+    <div class="modal fade" id="myModalEditEgreso{{$directorio['id']}}" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel{{$directorio['id']}}">
         <div class="modal-dialog" role="document">
-            <form method="POST" action="{{ url('ingresos/' . $directorio['id']) }}">
+            <form method="POST" action="{{ url('egresos/' . $directorio['id']) }}">
                 @csrf
                 {{method_field('PUT')}}
                 <div class="modal-content">
@@ -157,6 +160,22 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="" class="control-label col-md-2">Categoria:</label>
+                        <div class="col-md-6">
+                            <select name="categoria_egreso_id" id="">
+                                @if(isset($categoriasE))
+                                    @foreach($categoriasE as $categoria)
+                                        <option value="{{$categoria['id']}}" @if($categoria['id'] == $directorio['categoria_egreso_id']) selected @endif>{{$categoria['nombre']}}</option>
+    
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                        @error('categoria_egreso_id')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -166,5 +185,6 @@
             </form>
         </div>
     </div>
+    @endif
 @endforeach
 @endif

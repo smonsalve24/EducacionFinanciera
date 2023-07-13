@@ -80,7 +80,8 @@
 @if (isset($arrayList))
 @foreach ($arrayList as $directorio)
     <!-- Modal -->
-    <div class="modal fade" id="myModal{{ $directorio['id'] }}" tabindex="-1" role="dialog"
+    @if(isset($directorio['categoria_ingreso_id']))
+    <div class="modal fade" id="myModalIngreso{{ $directorio['id'] }}" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <form method="POST" action="{{ url('ingresos/' . $directorio['id']) }}">
@@ -104,6 +105,7 @@
             </form>
         </div>
     </div>
+    @endif
 @endforeach
 @endif
 
@@ -111,7 +113,8 @@
 @if (isset($arrayList))
 @foreach ($arrayList as $directorio)
     <!-- Modal -->
-    <div class="modal fade" id="myModalEdit{{$directorio['id']}}" tabindex="-1" role="dialog"
+    @if(isset($directorio['categoria_ingreso_id']))
+    <div class="modal fade" id="myModalEditIngreso{{$directorio['id']}}" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel{{$directorio['id']}}">
         <div class="modal-dialog" role="document">
             <form method="POST" action="{{ url('ingresos/' . $directorio['id']) }}">
@@ -154,6 +157,22 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="" class="control-label col-md-2">Categoria:</label>
+                        <div class="col-md-6">
+                            <select name="categoria_ingreso_id" id="">
+                                @if(isset($categorias))
+                                    @foreach($categorias as $categoria)
+                                        <option value="{{$categoria['id']}}" @if($categoria['id'] == $directorio['categoria_ingreso_id']) selected @endif>{{$categoria['nombre']}}</option>
+    
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                        @error('categoria_ingreso_id')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -163,5 +182,6 @@
             </form>
         </div>
     </div>
+    @endif
 @endforeach
 @endif

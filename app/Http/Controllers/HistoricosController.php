@@ -36,7 +36,7 @@ class HistoricosController extends Controller
         $recomendaciones = Recomendacion::all();
         $categorias = Categoria_ingreso::all();
         $categoriasE = Categoria_egreso::all();
-        $alertas = Alerta::all();
+        $alertas = Alerta::OrderBy('email_users', 'DESC')->get();
         return view('administrativo.historico.historico', compact('historicos', 'recomendaciones','categorias','arrayList','categoriasE', 'alertas'));
     }
 
