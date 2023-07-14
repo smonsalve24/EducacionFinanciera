@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="container text-white my-4">
     <div class="row">
         @if($message = Session::get('success'))
 			<div class="alert alert-success alert-block">
@@ -17,7 +17,7 @@
             @csrf
             <div class="form-horizontal">
                 <div class="form-group">
-                    <label for="" class="control-label col-md-2">Usuarios afectados:</label>
+                    <label for="" class="control-label col-md-2">Usuario afectado:</label>
                     <div class="col-md-6">
                         <input type="text" class="form-control" name="correo_usuario" placeholder="Correo electronico">
                         @error('correo_usuario')
@@ -25,8 +25,8 @@
 @enderror
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="" class="control-label col-md-2">Mensaje:</label>
+                <div class="form-group mt-3">
+                    <label for="" class="control-label col-md-2">Titulo:</label>
                     <div class="col-md-6">
                         <textarea name="mensaje" class="form-control" placeholder="Descripción de Sider..." rows="7"></textarea>
                         @error('mensaje')
@@ -34,7 +34,7 @@
 @enderror
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group mt-3">
                     <label for="" class="control-label col-md-2">Recomendación:</label>
                     <div class="col-md-6">
                         <textarea name="recomendacion" class="form-control" placeholder="Descripción de Sider..." rows="7"></textarea>

@@ -11,17 +11,18 @@
                         type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Alertas</button>
                     <form method="POST" action="{{ url('historicos-export/') }}" class="ms-auto">
                         @csrf
-                        <div class=" d-flex">Filtrar por fecha:
+                        <div class=" d-flex align-items-baseline">
+                            <h6 class="me-2"> Filtrar por fecha:</h6>
                             <div>
                                 <input type="date" id="myInputInicial" name="fecha" onchange="myFunction()"
-                                    placeholder="Search for names..">
+                                    placeholder="Buscar por fecha..">
                             </div>
 							<div type="button" onclick="clearFecha()" class="mx-2" id="clearDate" title="limpiar filtro" style="cursor: pointer;">
 								<em class="fa fa-refresh cursor-pointer" ></em>
 							</div>
-                            <div class="ms-0">
-                                <button type="submit" title="Descargar archivo excel"><em
-                                        class="fa fa-download"></em></button>
+                            <div class="ms-3">
+                                <button type="submit" title="Descargar archivo excel" class="btn btn-light">Descargar Historico <em
+                                        class="fa fa-download text-secondary"></em></button>
                             </div>
                         </div>
                     </form>
@@ -39,9 +40,9 @@
                             </p>
                         </div>
                         <div class="col-5 my-auto text-center">
-                            <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCreateIngreso">Insertar
+                            <a class="btn btn-success my-2" data-bs-toggle="modal" data-bs-target="#modalCreateIngreso">Insertar
                                 ingreso</a>
-                            <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalCreateEgreso">Insertar
+                            <a class="btn btn-danger my-2" data-bs-toggle="modal" data-bs-target="#modalCreateEgreso">Insertar
                                 Egreso</a>
                         </div>
                     </div>
@@ -86,10 +87,10 @@
                                             @endif
                                         </td>
                                         <td data-value='{{ date('Y-m-d', strtotime($directorio['fecha'])) }}'>
-                                            <h6>{{ date('d M Y', strtotime($directorio['fecha'])) }}</h6>
+                                            <h6 class="text-center">{{ date('d M Y', strtotime($directorio['fecha'])) }}</h6>
                                         </td>
                                         <td>
-                                            <h6 class="text-center">
+                                            <h6 class="text-center d-flex align-items-baseline justify-content-center">
                                                 @if (isset($directorio['categoria_egreso_id']))
                                                     $ <input type="text" disabled
                                                         class="valuePriceDischarge border-0 bg-transparent"
@@ -139,13 +140,15 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                    <div class="col-7">
-                        <h2>Alertas</h2>
-                        <p>
-                            En esta seccion personalizaras todas tus alertas y notificaciones
-                        </p>
+                    <div class="panel-header d-flex">
+                        <div class="col-7">
+                            <h2>Alertas</h2>
+                            <p>
+                                En esta seccion personalizaras todas tus alertas y notificaciones
+                            </p>
+                        </div>
                     </div>
-                    <div>
+                    <div id="AlertsMonto">
                         <!-- Tab panes -->
                         {{-- @include('cuentas.perfil') --}}
                         <table class="table">
@@ -191,7 +194,7 @@
                                         </td>
                                         <td>
                                             <h6 class="text-center">
-                                                {{ $directorio['email_users'] }}
+                                                {{ number_format($directorio['email_users'], 0) }}
                                             </h6>
                                         </td>
                                         <td>
@@ -219,21 +222,26 @@
                         </table>
 
                     </div>
-
-                    <button class="btn btn-success" data-bs-toggle="modal"
-                        data-bs-target="#modalGestionarAlertas">Gestionar alertas</button>
+                    <div>
+                        <button class="btn btn-success" data-bs-toggle="modal"
+                            data-bs-target="#modalGestionarAlertas">Gestionar alertas</button>
+                    </div>
                 </div>
             </div>
 
         </div>
         <div class="col-lg-4 bg-white py-4">
-            <div>
+            <div style="max-height: 300px;overflow: scroll;height:auto;">
                 <h3>Recomendaciones</h3>
                 @if (isset($recomendaciones))
                     @foreach ($recomendaciones as $recomendacion)
-                        <div class="card p-3">
-                            {{ $recomendacion['mensaje'] }}
+
+                    <div class="card text-dark bg-light mb-3" >
+                        <div class="card-header"><h5 class="card-title mb-0">{{ $recomendacion['mensaje'] }}</h5></div>
+                        <div class="card-body">
+                          <p class="card-text">{{ $recomendacion['recomendacion'] }}</p>
                         </div>
+                      </div>
                     @endforeach
                 @endif
             </div>

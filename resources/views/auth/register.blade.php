@@ -61,18 +61,7 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="" class="control-label col-md-2">Rol:</label>
-                            <div class="col-md-6">
-                                <select name="rol" id="" >
-                                    <option value="administrador">Administrador</option>
-                                    <option value="cliente">Usuario</option>
-                                </select>
-                            </div>
-                            @error('rol')
-            <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-                        </div>
+                        
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">

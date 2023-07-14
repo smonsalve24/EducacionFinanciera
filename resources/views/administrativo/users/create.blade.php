@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="container text-white my-5">
     <div class="row">
         @if($message = Session::get('success'))
 			<div class="alert alert-success alert-block">
@@ -28,7 +28,7 @@
     <div class="alert alert-danger">{{ $message }}</div>
 @enderror
                 </div>
-                <div class="form-group mt-3 mt-3">
+                <div class="form-group mt-3">
                     <label for="" class="control-label col-md-2">Nombre usuario:</label>
                     <div class="col-md-6">
                         <input type="text" class="form-control" name="name" placeholder="Nombre">

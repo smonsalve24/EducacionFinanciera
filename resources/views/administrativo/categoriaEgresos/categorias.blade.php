@@ -27,81 +27,61 @@
                 <div role="tabpanel" class="tab-pane active" id="perfil"><br>
                     {{-- @include('cuentas.perfil') --}}
                     <table class="table">
-                        <tr class="bg-primary">
-                            <td>
-                                <h5 class="text-center">
-                                    Id
-                                </h5>
-                            </td>
-                            <td>
-                                <h5 class="text-center">
-                                    Categoría
-                                </h5>
-                            </td>
-                            <td>
-                                <p>
-                                    Descripción de la categoría
-                                </p>
-                            </td>
-                            {{-- <td>
-						<h5 class="text-center">
-							Archivo
-						</h5>
-					</td> --}}
-                            <td>
-                                <h5 class="text-center">
-                                    Acciones
-                                </h5>
-                            </td>
-                        </tr>
-                        @if (isset($catEgreso))
-                            @foreach ($catEgreso as $directorio)
-                                <tr>
-                                    <td>
-                                        <h5 class="text-center">
-                                            {{ $directorio['id'] }}
-                                        </h5>
-                                    </td>
-                                    <td>
-                                        <h6 class="text-center">
-                                            {{ $directorio['nombre'] }}
-                                        </h6>
-                                    </td>
-                                    <td>
-										<p>
-											{{ $directorio['mensaje'] }}
-										</p>
-                                    </td>
-                                    {{-- <td>
-								<h5 class="text-left">
-									{{$directorio['titulo_proyectos']}}
-								</h5>
-							</td>
-							<td>
-								<div class="small text-capitalize" style="max-width: 260px;">
-									{!!substr($directorio['descripcion_proyectos'], 0, 100)!!}...
-								</div>
-							</td>
-							<td>
-								<h5 class="text-center">
-									@if ($directorio['archivo'] != null)
-										<img src="{{asset($directorio['archivo'])}}" alt="" class="img-responsive center-block" style="height: 50px;">
-									@else
-										No hay archivo
-									@endif
-								</h5>
-							</td> --}}
-                                    <td class="text-center d-flex justify-content-center align-items-center">
-                                        <a data-bs-toggle="modal" data-bs-target="#myModalEdit{{ $directorio['id'] }}" class="text-center text-info btn">
-                                            <i class="text-center fa fa-pencil"></i> Editar
-                                        </a>
-										<a class="text-center text-danger btn" data-bs-toggle="modal" data-bs-target="#myModal{{ $directorio['id'] }}">
-                                            <i class="text-center fa fa-close"></i> Eliminar
-                                        </a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        @endif
+                        <thead>
+                            <tr class="bg-primary">
+                                <th>
+                                    <h5 class="text-center">
+                                        Id
+                                    </h5>
+                                </th>
+                                <th>
+                                    <h5 class="text-center">
+                                        Categoría
+                                    </h5>
+                                </th>
+                                <th>
+                                    <h5 class="text-center">
+                                        Descripción de la categoría
+                                    </h5>
+                                </th>
+                                <th>
+                                    <h5 class="text-center">
+                                        Acciones
+                                    </h5>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (isset($catEgreso))
+                                @foreach ($catEgreso as $directorio)
+                                    <tr>
+                                        <td>
+                                            <h5 class="text-center">
+                                                {{ $directorio['id'] }}
+                                            </h5>
+                                        </td>
+                                        <td>
+                                            <h5 class="text-center">
+                                                {{ $directorio['nombre'] }}
+                                            </h5>
+                                        </td>
+                                        <td>
+                                            <h5 class="text-center">
+                                                {{ $directorio['mensaje'] }}
+                                            </h5>   
+                                        </td>
+                                        <td class="text-center d-flex justify-content-center align-items-center">
+                                            <a data-bs-toggle="modal" data-bs-target="#myModalEdit{{ $directorio['id'] }}" class="text-center text-info btn">
+                                                <i class="text-center fa fa-pencil"></i> Editar
+                                            </a>
+                                            <a class="text-center text-danger btn" data-bs-toggle="modal" data-bs-target="#myModal{{ $directorio['id'] }}">
+                                                <i class="text-center fa fa-close"></i> Eliminar
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                        </tbody>
                     </table>
                 </div>
             </div>

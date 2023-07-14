@@ -121,7 +121,7 @@
         </symbol>
     </svg>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm py-0">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <strong>{{ config('app.name', 'Laravel') }}</strong>
@@ -173,7 +173,7 @@
                         </li>
                           </ul>
                         </div> --}}
-                            <li class="nav-item dropdown">
+                        <li class="nav-item dropdown" style="background-color: white;">
                                 <a href="#"
                                     class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle"
                                     id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -285,7 +285,7 @@
                 @endif
             @endguest
             @if (@Auth::user() && @Auth::user()->hasRole('administrador'))
-            <div class="col-xs-10 col-sm-10  col-md-10  col-lg-8 "
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10"
                 >
                 @elseif(@Auth::user() && @Auth::user()->hasRole('cliente'))
                 <div class="col-xs-12 col-sm-12  col-md-12  col-lg-12 "

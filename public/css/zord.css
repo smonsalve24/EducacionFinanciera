@@ -6,6 +6,8 @@ body{
 	background-image: url('../images/fondo.jpg');
     background-size: cover;
 	min-height: 100%;
+	backdrop-filter: blur(10px);
+	max-width: 100%;	
 }
 
 #app{
@@ -18,6 +20,16 @@ body{
 }
 
 #movementHistory{
+	max-height: 450px;
+    overflow: auto;
+}
+.valuePriceDischarge{
+	width: 25%;
+}
+.valuePriceEntry{
+	width: 25%;
+}
+#AlertsMonto{
 	max-height: 450px;
     overflow: auto;
 }
@@ -50,6 +62,12 @@ body{
 }
 li.principal{
 	background: #961820;
+}
+.nav-tabs .nav-link{
+	color: #eee;
+}
+.nav-tabs .nav-link:hover{
+	color: #eee;
 }
 .nav>li.active>a{
 	background: #eee;
@@ -88,3 +106,11 @@ li.principal{
 .text-black{
 	font-family: 'Lato-Black' !important;
 }
+@media only screen and (max-width: 768px) {
+	.valuePriceDischarge{
+		width: 100%;
+	}
+	.valuePriceEntry{
+		width: 100%;
+	}
+  }
